@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #login_form_main_box{
+            position: absolute;
+            height: 40%;
+            width: 30%;
+            background-color: gray;
+            border-radius: 10px;
+            left: 35%;
+            top: 30%;
+        }
+        #login_form_main_box>img{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        #loginPsd{
+            position: absolute;
+            height: 15%;
+            width: 80%;
+            /*background-color: red;*/
+            border: 0;
+            border-radius: 10px;
+            left: 10%;
+            top: 60%;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        #loginEmail{
+            position: absolute;
+            height: 15%;
+            width: 80%;
+            /*background-color: red;*/
+            border: 0;
+            border-radius: 10px;
+            left: 10%;
+            top: 40%;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        #login{
+            position: absolute;
+            height: 12%;
+            width: 20%;
+            background-color: #2ea303;
+            border-radius: 10px;
+            left: 70%;
+            top: 80%;
+            border: 0;
+            font-size: 110%;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
+        #login:hover{
+            background-color: #fd2e0a;
+            cursor: pointer;
+        }
+
+        #login_img{
+            position: relative;
+            height: 100px;
+            width: 100px;
+            background-color: white;
+            left: 38%;
+            top: 4%;
+            border-radius: 100%;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        #login_img>img{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="login_form_main_box">
+    <img src="../assets/img/redusebrightness.png">
+    <div id="login_img">
+        <img src="../assets/img/user-removebg-preview.png">
+    </div>
+    <input  placeholder="Email" type="text" id="loginEmail">
+    <input  placeholder="Password" type="password" id="loginPsd">
+    <button id="login">Login</button>
+</div>
+
+
+<!-- -button ekakin load karana widiya (thawa page ekk )-->
+<!--$('#VMButton').click(function (){-->
+<!--window.open('./assignments/CSS/Basic/case_3/Case-03.html');-->
+<!--return false;-->
+<!--})-->
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+    let baseURL = "http://localhost:8080/api/v1/login/";
+    let token="9cfd6bf5b3d09bcc3fa918fcacf5e56405e1eac40d6fe4479775d80eb5ae8e2fc2b300081e038903ef6c677f04bf954c0a189e6cafdf2a013277851ea5c4e2b0"
+
+    // check login
+    $('#login').click(function (){
+
+        let formData = {
+            loginEmail: $("#loginEmail").val(),
+            loginPsd: $("#loginPsd").val(),
+        };
+        $.ajax({
+            url: baseURL + "check-login",
+            method: "post",
+            data: JSON.stringify(formData),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+               if(res.data == token){
+                   clearTextField();
+                   window.location.href="DashbordForm.html";
+                   return false;
+               }
+            },
+            error: function (error) {
+                var errorMessage = JSON.parse(error.responseText);
+                alert(errorMessage.message);
+            }
+        });
+    })
+
+    // clear form text fields
+    function clearTextField(){
+        $("#userID").val(""),
+            $("#loginEmail").val(""),
+            $("#loginPsd").val("")
+    }
+</script>
+</body>
+</html>

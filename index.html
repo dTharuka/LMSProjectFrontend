@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main1{
+            /*position: absolute;*/
+            /*height: 70%;*/
+            /*width: 70%;*/
+            /*background-color: white;*/
+            /*borderRadius: 10px;*/
+            /*gridGap: 10px;*/
+            /*boxShadow:  rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;*/
+            /*left: 15%;*/
+            /*top: 15%;*/
+
+            position: absolute;
+            height: 70%;
+            width: 70%;
+            background-color: white;
+            border-radius: 10px;
+
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            left: 15%;
+            top: 15%;
+        }
+
+        #main1>img{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            opacity: 0.5;
+
+        }
+
+        #main1_page_img{
+            position: absolute;
+            height: 90%;
+            width: 70%;
+            background-color: white;
+            border-radius: 10px;
+            left: 5%;
+            top: 5%;
+        }
+
+        #main1_page_img>img{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #sign_in_button{
+            position: absolute;
+            height: 10%;
+            width: 15%;
+            background-color: #41f506;
+            border-radius: 10px;
+            left: 80%;
+            top: 5%;
+            font-size: 150%;
+            border: 0;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
+        #sign_in_button:hover {
+            background-color: #2ea303;
+            cursor: pointer;
+        }
+
+        #log_in_button{
+            position: absolute;
+            height: 10%;
+            width: 15%;
+            background-color: #41f506;
+            border-radius: 10px;
+            left: 80%;
+            top: 20%;
+            font-size: 150%;
+            border: 0;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
+        #log_in_button:hover {
+            background-color: #2ea303;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="main1">
+    <img src="assets/img/6935839.jpg">
+    <div id="main1_page_img">
+        <img src="assets/img/wellcomePhoto.png">
+    </div>
+    <button id="sign_in_button">Sign in</button>
+    <button id="log_in_button">Log in</button>
+</div>
+
+
+
+
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+    $('#log_in_button').click(function (){
+        window.location.href="./pages/LoginForm.html";
+        return false;
+    })
+
+    $('#sign_in_button').click(function() {
+        window.location.href = "./pages/SignInForm.html";
+        return false;
+    });
+</script>
+</body>
+</html>
