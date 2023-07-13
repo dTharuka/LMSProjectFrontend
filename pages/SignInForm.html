@@ -179,160 +179,161 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script src="../js/jquery-3.6.1.min.js"></script>
-<script>
-    // let baseURL = "http://localhost:8080/api/v1/user/";
-    // $("#btnAddToTable").click(function (){
-    //     let formData = $("#userSignInForm").serialize();
-    //     $.ajax({
-    //         url: baseURL + "save-user", method: "post", data: formData, dataType: "json", success: function (res) {
-    //             // getAllAdmins();----> methana getAll eka call karanna....
-    //             alert(res.message);
-    //         }, error: function (error) {
-    //             var errorMessage = JSON.parse(error.responseText);
-    //             alert(errorMessage.message);
-    //         }
-    //     });
-    // });
+<script src="../controllers/SignInFormController.js"></script>
+<!--<script>-->
+<!--    // let baseURL = "http://localhost:8080/api/v1/user/";-->
+<!--    // $("#btnAddToTable").click(function (){-->
+<!--    //     let formData = $("#userSignInForm").serialize();-->
+<!--    //     $.ajax({-->
+<!--    //         url: baseURL + "save-user", method: "post", data: formData, dataType: "json", success: function (res) {-->
+<!--    //             // getAllAdmins();&#45;&#45;&ndash;&gt; methana getAll eka call karanna....-->
+<!--    //             alert(res.message);-->
+<!--    //         }, error: function (error) {-->
+<!--    //             var errorMessage = JSON.parse(error.responseText);-->
+<!--    //             alert(errorMessage.message);-->
+<!--    //         }-->
+<!--    //     });-->
+<!--    // });-->
 
-    let baseURL = "http://localhost:8080/api/v1/user/";
-    let generateID = [];
-    getAllUsers();
+<!--    let baseURL = "http://localhost:8080/api/v1/user/";-->
+<!--    let generateID = [];-->
+<!--    getAllUsers();-->
 
-    $("#btnAddToTable").click(function () {
+<!--    $("#btnAddToTable").click(function () {-->
 
-        let userID= $("#userID").val();
-        let formData = {
-            userID: $("#userID").val(),
-            name: $("#name").val(),
-            email: $("#email").val(),
-            password: $("#password").val(),
-            // userImg: $("#userImg").val()
-        };
-        $.ajax({
-            url: baseURL + "save-user",
-            method: "post",
-            data: JSON.stringify(formData),
-            dataType: "json",
-            contentType: "application/json", // Add this line
-            success: function (res) {
-                // getAllAdmins();----> methana getAll eka call karanna....
-                uploadRegisterImages(userID);
-                alert(res.message);
-                clearTextField();
-                getAllUsers();
-            },
-            error: function (error) {
-                var errorMessage = JSON.parse(error.responseText);
-                alert(errorMessage.message);
-            }
-        });
-    });
+<!--        let userID= $("#userID").val();-->
+<!--        let formData = {-->
+<!--            userID: $("#userID").val(),-->
+<!--            name: $("#name").val(),-->
+<!--            email: $("#email").val(),-->
+<!--            password: $("#password").val(),-->
+<!--            // userImg: $("#userImg").val()-->
+<!--        };-->
+<!--        $.ajax({-->
+<!--            url: baseURL + "save-user",-->
+<!--            method: "post",-->
+<!--            data: JSON.stringify(formData),-->
+<!--            dataType: "json",-->
+<!--            contentType: "application/json", // Add this line-->
+<!--            success: function (res) {-->
+<!--                // getAllAdmins();&#45;&#45;&ndash;&gt; methana getAll eka call karanna....-->
+<!--                uploadRegisterImages(userID);-->
+<!--                alert(res.message);-->
+<!--                clearTextField();-->
+<!--                getAllUsers();-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                var errorMessage = JSON.parse(error.responseText);-->
+<!--                alert(errorMessage.message);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
 
-    // get all users
-    function getAllUsers() {
-        $.ajax({
-            url: baseURL + "get-all-users", success: function (res) {
-                for (let c of res.data) {
-                    generateID.push(c.userID);
-                    // console.log(c.userID);
-                }
-                generateUserID();
-            }, error: function (error) {
-                let message = JSON.parse(error.responseText).message;
-                alert(message);
-            }
-        });
-    }
+<!--    // get all users-->
+<!--    function getAllUsers() {-->
+<!--        $.ajax({-->
+<!--            url: baseURL + "get-all-users", success: function (res) {-->
+<!--                for (let c of res.data) {-->
+<!--                    generateID.push(c.userID);-->
+<!--                    // console.log(c.userID);-->
+<!--                }-->
+<!--                generateUserID();-->
+<!--            }, error: function (error) {-->
+<!--                let message = JSON.parse(error.responseText).message;-->
+<!--                alert(message);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
 
-    //generate user id
-    function generateUserID() {
-        let maxCount = 0;
-        for (let i = 0; i < generateID.length; i++) {
-            let userID = generateID[i];
-            let count = parseInt(userID.split("-")[1]);
-            if (count > maxCount) {
-                maxCount = count;
-            }
-        }
-        maxCount++;
-        let newUserID = "U00-" + maxCount;
-        $("#userID").val(newUserID);
-    }
-
-
-    function clearTextField(){
-        $("#userID").val(""),
-        $("#name").val(""),
-        $("#email").val(""),
-        $("#password").val(""),
-        $("#userImg").val("")
-    }
-
-    // validation .......
-    function AdmValidator(txtField, regXPattern, nextTxtField) {
+<!--    //generate user id-->
+<!--    function generateUserID() {-->
+<!--        let maxCount = 0;-->
+<!--        for (let i = 0; i < generateID.length; i++) {-->
+<!--            let userID = generateID[i];-->
+<!--            let count = parseInt(userID.split("-")[1]);-->
+<!--            if (count > maxCount) {-->
+<!--                maxCount = count;-->
+<!--            }-->
+<!--        }-->
+<!--        maxCount++;-->
+<!--        let newUserID = "U00-" + maxCount;-->
+<!--        $("#userID").val(newUserID);-->
+<!--    }-->
 
 
-        $(txtField).on('keyup', function (e) {
+<!--    function clearTextField(){-->
+<!--        $("#userID").val(""),-->
+<!--        $("#name").val(""),-->
+<!--        $("#email").val(""),-->
+<!--        $("#password").val(""),-->
+<!--        $("#userImg").val("")-->
+<!--    }-->
 
-                if (regXPattern.test($(txtField).val())) {
-                    $(txtField).css('border', '3px solid green');
+<!--    // validation .......-->
+<!--    function AdmValidator(txtField, regXPattern, nextTxtField) {-->
 
 
-                    if (e.key === "Enter" && txtField !== "#password") {
-                        $(nextTxtField).focus();
+<!--        $(txtField).on('keyup', function (e) {-->
 
-                    } else {
-                        return false;
-                    }
+<!--                if (regXPattern.test($(txtField).val())) {-->
+<!--                    $(txtField).css('border', '3px solid green');-->
 
-                } else {
-                    $(txtField).css('border', '3px solid red');
-                }
-            }
-        )
-    }
 
-    AdmValidator(
-        '#name',
-        /^[A-z]{3,30}$/,
-        '#email'
-    )
-    AdmValidator(
-        '#email',
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/,
-        '#password'
-    )
-    AdmValidator(
-        '#password',
-        /^[A-z]{4,30}$/,
-        '#userImg'
-    )
+<!--                    if (e.key === "Enter" && txtField !== "#password") {-->
+<!--                        $(nextTxtField).focus();-->
 
-    function uploadRegisterImages(userID) {
+<!--                    } else {-->
+<!--                        return false;-->
+<!--                    }-->
 
-        let imageViewFile = $("#userImg")[0].files[0];
+<!--                } else {-->
+<!--                    $(txtField).css('border', '3px solid red');-->
+<!--                }-->
+<!--            }-->
+<!--        )-->
+<!--    }-->
 
-        let imageFileName = userID+"-image-"+$("#userImg")[0].files[0].name;
+<!--    AdmValidator(-->
+<!--        '#name',-->
+<!--        /^[A-z]{3,30}$/,-->
+<!--        '#email'-->
+<!--    )-->
+<!--    AdmValidator(-->
+<!--        '#email',-->
+<!--        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/,-->
+<!--        '#password'-->
+<!--    )-->
+<!--    AdmValidator(-->
+<!--        '#password',-->
+<!--        /^[A-z]{4,30}$/,-->
+<!--        '#userImg'-->
+<!--    )-->
 
-        var data = new FormData();
-        data.append("image",imageViewFile,imageFileName);
+<!--    function uploadRegisterImages(userID) {-->
 
-        $.ajax({
-            url: baseURL + "uploadImg/" + userID,
-            method: "put",
-            async: true,
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (resp) {
-                console.log("Uploaded");
-                alert(resp.message)
-            },
-            error: function (error) {
-                alert(JSON.parse(error.responseText).message);
-            }
-        });}
+<!--        let imageViewFile = $("#userImg")[0].files[0];-->
 
-</script>
+<!--        let imageFileName = userID+"-image-"+$("#userImg")[0].files[0].name;-->
+
+<!--        var data = new FormData();-->
+<!--        data.append("image",imageViewFile,imageFileName);-->
+
+<!--        $.ajax({-->
+<!--            url: baseURL + "uploadImg/" + userID,-->
+<!--            method: "put",-->
+<!--            async: true,-->
+<!--            contentType: false,-->
+<!--            processData: false,-->
+<!--            data: data,-->
+<!--            success: function (resp) {-->
+<!--                console.log("Uploaded");-->
+<!--                alert(resp.message)-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                alert(JSON.parse(error.responseText).message);-->
+<!--            }-->
+<!--        });}-->
+
+<!--</script>-->
 </body>
 </html>

@@ -174,186 +174,187 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script src="../js/jquery-3.6.1.min.js"></script>
-<script>
-    let baseURL = "http://localhost:8080/api/v1/user/";
-    // let generateID = [];
-    // let countID=[];
-    // let max=0;
-    // let tempID;
-    // let count;
-    getAllUsers();
+<script src="../controllers/UserFormController.js"></script>
+<!--<script>-->
+<!--    let baseURL = "http://localhost:8080/api/v1/user/";-->
+<!--    // let generateID = [];-->
+<!--    // let countID=[];-->
+<!--    // let max=0;-->
+<!--    // let tempID;-->
+<!--    // let count;-->
+<!--    getAllUsers();-->
 
 
-    // search user
-    $("#searchUserID").keydown(function (event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
+<!--    // search user-->
+<!--    $("#searchUserID").keydown(function (event) {-->
+<!--        if (event.keyCode === 13) {-->
+<!--            event.preventDefault();-->
 
 
-            $.ajax({
-                url: baseURL + "search/" +$("#searchUserID").val(),
-                method: "GET",
-                dataType: "json",
-                success: function (res) {
+<!--            $.ajax({-->
+<!--                url: baseURL + "search/" +$("#searchUserID").val(),-->
+<!--                method: "GET",-->
+<!--                dataType: "json",-->
+<!--                success: function (res) {-->
 
-                    $("#userID").val(res.data.userID);
-                    $("#name").val(res.data.name);
-                    $("#email").val(res.data.email);
-                    $("#password").val(res.data.password);
-                    $("#userImg").val(res.data.userImg);
-                    clearSearchTextField();
-                },
-                error: function (error) {
-                    var errorMessage = JSON.parse(error.responseText);
-                    alert(errorMessage.message);
-                }
-            });
-        }
-    });
+<!--                    $("#userID").val(res.data.userID);-->
+<!--                    $("#name").val(res.data.name);-->
+<!--                    $("#email").val(res.data.email);-->
+<!--                    $("#password").val(res.data.password);-->
+<!--                    $("#userImg").val(res.data.userImg);-->
+<!--                    clearSearchTextField();-->
+<!--                },-->
+<!--                error: function (error) {-->
+<!--                    var errorMessage = JSON.parse(error.responseText);-->
+<!--                    alert(errorMessage.message);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    });-->
 
-    // update function work......
+<!--    // update function work......-->
 
-    $("#btnUpdateTable").click(function (){
-        let formData = {
-            userID: $("#userID").val(),
-            name: $("#name").val(),
-            email: $("#email").val(),
-            password: $("#password").val(),
-            userImg: $("#userImg").val()
-        };
+<!--    $("#btnUpdateTable").click(function (){-->
+<!--        let formData = {-->
+<!--            userID: $("#userID").val(),-->
+<!--            name: $("#name").val(),-->
+<!--            email: $("#email").val(),-->
+<!--            password: $("#password").val(),-->
+<!--            userImg: $("#userImg").val()-->
+<!--        };-->
 
-        $.ajax({
-            url: baseURL + "update-user",
-            method: "put",
-            data: JSON.stringify(formData),
-            dataType: "json",
-            contentType: "application/json",
-            success: function (res) {
-                alert(res.message);
-                // getAllAdmins();----> methana getAll eka call karanna....
-                clearTextField();
-                getAllUsers();
-            },
-            error: function (error) {
-                var errorMessage = JSON.parse(error.responseText);
-                alert(errorMessage.message);
-            }
-        });
-    });
+<!--        $.ajax({-->
+<!--            url: baseURL + "update-user",-->
+<!--            method: "put",-->
+<!--            data: JSON.stringify(formData),-->
+<!--            dataType: "json",-->
+<!--            contentType: "application/json",-->
+<!--            success: function (res) {-->
+<!--                alert(res.message);-->
+<!--                // getAllAdmins();&#45;&#45;&ndash;&gt; methana getAll eka call karanna....-->
+<!--                clearTextField();-->
+<!--                getAllUsers();-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                var errorMessage = JSON.parse(error.responseText);-->
+<!--                alert(errorMessage.message);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
 
-    //delete function work...
+<!--    //delete function work...-->
 
-    $("#btnDeleteTable").click(function (){
+<!--    $("#btnDeleteTable").click(function (){-->
 
-        $.ajax({
-            url: baseURL + "delete-user/" +$("#userID").val(),
-            method: "delete",
-            dataType: "json",
-            success: function (res) {
-                alert(res.message);
-                clearTextField();
-                getAllUsers();
-                window.location.replace("../index.html");
-                return false;
-            },
-            error: function (error) {
-                var errorMessage = JSON.parse(error.responseText);
-                alert(errorMessage.message);
+<!--        $.ajax({-->
+<!--            url: baseURL + "delete-user/" +$("#userID").val(),-->
+<!--            method: "delete",-->
+<!--            dataType: "json",-->
+<!--            success: function (res) {-->
+<!--                alert(res.message);-->
+<!--                clearTextField();-->
+<!--                getAllUsers();-->
+<!--                window.location.replace("../index.html");-->
+<!--                return false;-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                var errorMessage = JSON.parse(error.responseText);-->
+<!--                alert(errorMessage.message);-->
 
-            }
-        });
-    });
-
-
-    // get all users
-    function getAllUsers() {
-        $.ajax({
-            url: baseURL + "get-all-users", success: function (res) {
-                for (let c of res.data) {
-                    // generateID.push(c.userID);
-                    // console.log(c.userID);
-                }
-                // generateUserID();
-            }, error: function (error) {
-                let message = JSON.parse(error.responseText).message;
-                alert(message);
-            }
-        });
-    }
-
-    //generate user id
-    // function generateUserID() {
-    //     let maxCount = 0;
-    //     for (let i = 0; i < generateID.length; i++) {
-    //         let userID = generateID[i];
-    //         let count = parseInt(userID.split("-")[1]);
-    //         if (count > maxCount) {
-    //             maxCount = count;
-    //         }
-    //     }
-    //     maxCount++;
-    //     let newUserID = "U00-" + maxCount;
-    //     $("#userID").val(newUserID);
-    // }
+<!--            }-->
+<!--        });-->
+<!--    });-->
 
 
-    // clear form text fields
-    function clearTextField(){
-            $("#userID").val(""),
-            $("#name").val(""),
-            $("#email").val(""),
-            $("#password").val(""),
-            $("#userImg").val("")
-    }
+<!--    // get all users-->
+<!--    function getAllUsers() {-->
+<!--        $.ajax({-->
+<!--            url: baseURL + "get-all-users", success: function (res) {-->
+<!--                for (let c of res.data) {-->
+<!--                    // generateID.push(c.userID);-->
+<!--                    // console.log(c.userID);-->
+<!--                }-->
+<!--                // generateUserID();-->
+<!--            }, error: function (error) {-->
+<!--                let message = JSON.parse(error.responseText).message;-->
+<!--                alert(message);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
 
-    // clear search text field
-    function clearSearchTextField(){
-        $("#searchUserID").val("");
-    }
-
-    // validation....
-    function AdmValidator(txtField, regXPattern, nextTxtField) {
-
-
-        $(txtField).on('keyup', function (e) {
-
-                if (regXPattern.test($(txtField).val())) {
-                    $(txtField).css('border', '3px solid green');
-
-
-                    if (e.key === "Enter" && txtField !== "#password") {
-                        $(nextTxtField).focus();
-
-                    } else {
-                        return false;
-                    }
-
-                } else {
-                    $(txtField).css('border', '3px solid red');
-                }
-            }
-        )
-    }
-
-    AdmValidator(
-        '#name',
-        /^[A-z]{3,30}$/,
-        '#email'
-    )
-    AdmValidator(
-        '#email',
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/,
-        '#password'
-    )
-    AdmValidator(
-        '#password',
-        /^[A-z]{4,30}$/,
-        '#userImg'
-    )
+<!--    //generate user id-->
+<!--    // function generateUserID() {-->
+<!--    //     let maxCount = 0;-->
+<!--    //     for (let i = 0; i < generateID.length; i++) {-->
+<!--    //         let userID = generateID[i];-->
+<!--    //         let count = parseInt(userID.split("-")[1]);-->
+<!--    //         if (count > maxCount) {-->
+<!--    //             maxCount = count;-->
+<!--    //         }-->
+<!--    //     }-->
+<!--    //     maxCount++;-->
+<!--    //     let newUserID = "U00-" + maxCount;-->
+<!--    //     $("#userID").val(newUserID);-->
+<!--    // }-->
 
 
+<!--    // clear form text fields-->
+<!--    function clearTextField(){-->
+<!--            $("#userID").val(""),-->
+<!--            $("#name").val(""),-->
+<!--            $("#email").val(""),-->
+<!--            $("#password").val(""),-->
+<!--            $("#userImg").val("")-->
+<!--    }-->
+
+<!--    // clear search text field-->
+<!--    function clearSearchTextField(){-->
+<!--        $("#searchUserID").val("");-->
+<!--    }-->
+
+<!--    // validation....-->
+<!--    function AdmValidator(txtField, regXPattern, nextTxtField) {-->
 
 
-</script>
+<!--        $(txtField).on('keyup', function (e) {-->
+
+<!--                if (regXPattern.test($(txtField).val())) {-->
+<!--                    $(txtField).css('border', '3px solid green');-->
+
+
+<!--                    if (e.key === "Enter" && txtField !== "#password") {-->
+<!--                        $(nextTxtField).focus();-->
+
+<!--                    } else {-->
+<!--                        return false;-->
+<!--                    }-->
+
+<!--                } else {-->
+<!--                    $(txtField).css('border', '3px solid red');-->
+<!--                }-->
+<!--            }-->
+<!--        )-->
+<!--    }-->
+
+<!--    AdmValidator(-->
+<!--        '#name',-->
+<!--        /^[A-z]{3,30}$/,-->
+<!--        '#email'-->
+<!--    )-->
+<!--    AdmValidator(-->
+<!--        '#email',-->
+<!--        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/,-->
+<!--        '#password'-->
+<!--    )-->
+<!--    AdmValidator(-->
+<!--        '#password',-->
+<!--        /^[A-z]{4,30}$/,-->
+<!--        '#userImg'-->
+<!--    )-->
+
+
+
+
+<!--</script>-->
 </body>
 </html>
