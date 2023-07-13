@@ -176,6 +176,13 @@
 <script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let baseURL = "http://localhost:8080/api/v1/user/";
+    // let generateID = [];
+    // let countID=[];
+    // let max=0;
+    // let tempID;
+    // let count;
+    getAllUsers();
+
 
     // search user
     $("#searchUserID").keydown(function (event) {
@@ -225,6 +232,7 @@
                 alert(res.message);
                 // getAllAdmins();----> methana getAll eka call karanna....
                 clearTextField();
+                getAllUsers();
             },
             error: function (error) {
                 var errorMessage = JSON.parse(error.responseText);
@@ -244,6 +252,7 @@
             success: function (res) {
                 alert(res.message);
                 clearTextField();
+                getAllUsers();
                 window.location.replace("../index.html");
                 return false;
             },
@@ -254,6 +263,39 @@
             }
         });
     });
+
+
+    // get all users
+    function getAllUsers() {
+        $.ajax({
+            url: baseURL + "get-all-users", success: function (res) {
+                for (let c of res.data) {
+                    // generateID.push(c.userID);
+                    // console.log(c.userID);
+                }
+                // generateUserID();
+            }, error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //generate user id
+    // function generateUserID() {
+    //     let maxCount = 0;
+    //     for (let i = 0; i < generateID.length; i++) {
+    //         let userID = generateID[i];
+    //         let count = parseInt(userID.split("-")[1]);
+    //         if (count > maxCount) {
+    //             maxCount = count;
+    //         }
+    //     }
+    //     maxCount++;
+    //     let newUserID = "U00-" + maxCount;
+    //     $("#userID").val(newUserID);
+    // }
+
 
     // clear form text fields
     function clearTextField(){
