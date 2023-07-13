@@ -131,6 +131,8 @@
 <script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let baseURL = "http://localhost:8080/api/v1/register/";
+    let generateID = [];
+    getAllCourse();
 
     //Add registration..
     $("#btnAddCourse").click(function (){
@@ -152,6 +154,7 @@
                 // getAllAdmins();----> methana getAll eka call karanna....
                 alert(res.message);
                 clearTextField();
+                getAllCourse();
             },
             error: function (error) {
                 var errorMessage = JSON.parse(error.responseText);
@@ -209,6 +212,7 @@
                 alert(res.message);
                 // getAllAdmins();----> methana getAll eka call karanna....
                 clearTextField();
+                getAllCourse();
             },
             error: function (error) {
                 var errorMessage = JSON.parse(error.responseText);
@@ -225,6 +229,7 @@
             success: function (res) {
                 alert(res.message);
                 clearTextField();
+                getAllCourse();
             },
             error: function (error) {
                 var errorMessage = JSON.parse(error.responseText);
@@ -233,6 +238,37 @@
             }
         });
     });
+
+    // get all course
+    function getAllCourse() {
+        $.ajax({
+            url: baseURL + "get-all-registers", success: function (res) {
+                for (let c of res.data) {
+                    generateID.push(c.registerID);
+
+                }
+                generateRegisterID();
+            }, error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //generate register id
+    function generateRegisterID() {
+        let maxCount = 0;
+        for (let i = 0; i < generateID.length; i++) {
+            let courseID = generateID[i];
+            let count = parseInt(courseID.split("-")[1]);
+            if (count > maxCount) {
+                maxCount = count;
+            }
+        }
+        maxCount++;
+        let newUserID = "R00-" + maxCount;
+        $("#registerID").val(newUserID);
+    }
 
     // clear form text fields
     function clearTextField(){
