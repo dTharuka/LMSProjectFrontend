@@ -37,12 +37,13 @@ $("#searchUserID").keydown(function (event) {
 // update function work......
 
 $("#btnUpdateTable").click(function (){
+    let userID= $("#userID").val();
     let formData = {
         userID: $("#userID").val(),
         name: $("#name").val(),
         email: $("#email").val(),
         password: $("#password").val(),
-        userImg: $("#userImg").val()
+        // userImg: $("#userImg").val()
     };
 
     $.ajax({
@@ -52,6 +53,7 @@ $("#btnUpdateTable").click(function (){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
+            uploadRegisterImages(userID)
             alert(res.message);
             // getAllAdmins();----> methana getAll eka call karanna....
             clearTextField();
@@ -173,3 +175,28 @@ AdmValidator(
     /^[A-z]{4,30}$/,
     '#userImg'
 )
+
+function uploadRegisterImages(userID) {
+
+    let imageViewFile = $("#userImg")[0].files[0];
+
+    let imageFileName = userID+"-image-"+$("#userImg")[0].files[0].name;
+
+    var data = new FormData();
+    data.append("image",imageViewFile,imageFileName);
+
+    $.ajax({
+        url: baseURL + "uploadImg/" + userID,
+        method: "put",
+        async: true,
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (resp) {
+            console.log("Uploaded");
+            alert(resp.message)
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });}
