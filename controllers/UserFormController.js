@@ -18,12 +18,13 @@ $("#searchUserID").keydown(function (event) {
             method: "GET",
             dataType: "json",
             success: function (res) {
-
+                // alert(res.data.image); todo----> image ekata null ekk enne eka hadanna...
                 $("#userID").val(res.data.userID);
                 $("#name").val(res.data.name);
                 $("#email").val(res.data.email);
                 $("#password").val(res.data.password);
-                $("#userImg").val(res.data.userImg);
+                $("#userImg").val(res.data.image);
+                // $("#userImg").attr("src", res.data.image);
                 clearSearchTextField();
             },
             error: function (error) {
@@ -38,6 +39,7 @@ $("#searchUserID").keydown(function (event) {
 
 $("#btnUpdateTable").click(function (){
     let userID= $("#userID").val();
+    // alert($("#userImg").val());
     let formData = {
         userID: $("#userID").val(),
         name: $("#name").val(),
@@ -65,6 +67,8 @@ $("#btnUpdateTable").click(function (){
         }
     });
 });
+
+
 
 //delete function work...
 
@@ -193,10 +197,11 @@ function uploadRegisterImages(userID) {
         processData: false,
         data: data,
         success: function (resp) {
-            console.log("Uploaded");
+            console.log("Update..");
             alert(resp.message)
         },
         error: function (error) {
             alert(JSON.parse(error.responseText).message);
         }
     });}
+
