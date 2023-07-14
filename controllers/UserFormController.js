@@ -1,4 +1,5 @@
 let baseURL = "http://localhost:8080/api/v1/user/";
+let resImg="";
 // let generateID = [];
 // let countID=[];
 // let max=0;
@@ -18,12 +19,13 @@ $("#searchUserID").keydown(function (event) {
             method: "GET",
             dataType: "json",
             success: function (res) {
+                resImg=res.data.image;
                 // alert(res.data.image); todo----> image ekata null ekk enne eka hadanna...
                 $("#userID").val(res.data.userID);
                 $("#name").val(res.data.name);
                 $("#email").val(res.data.email);
                 $("#password").val(res.data.password);
-                $("#userImg").val(res.data.image);
+                // $("#userImg").val(res.data.image);
                 // $("#userImg").attr("src", res.data.image);
                 clearSearchTextField();
             },
@@ -38,14 +40,13 @@ $("#searchUserID").keydown(function (event) {
 // update function work......
 
 $("#btnUpdateTable").click(function (){
-    let userID= $("#userID").val();
-    // alert($("#userImg").val());
-    let formData = {
+     let formData = {
         userID: $("#userID").val(),
         name: $("#name").val(),
         email: $("#email").val(),
         password: $("#password").val(),
-        // userImg: $("#userImg").val()
+        image:resImg
+        //  image:$("#userImg").val()
     };
 
     $.ajax({
@@ -55,9 +56,7 @@ $("#btnUpdateTable").click(function (){
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
-            uploadRegisterImages(userID)
             alert(res.message);
-            // getAllAdmins();----> methana getAll eka call karanna....
             clearTextField();
             getAllUsers();
         },
