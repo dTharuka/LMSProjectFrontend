@@ -1,9 +1,10 @@
 #sign_in_box{
     position: absolute;
-    left: 30%;
+    left: 25%;
     top: 20%;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     border-radius: 10px;
+    width: 50%;
 }
 body>div:nth-child(1){
     position: absolute;
@@ -23,4 +24,18 @@ body>div:nth-child(1)>img{
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     opacity: 50%;
+}
+
+#searchRegistrationID{
+    position: absolute;
+    width: 28%;
+    left: 70%;
+    top: 5%;
+    height: 7%;
+    border-radius: 5px;
+    background-color: #e0dddd;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border: 0;
+
+
 }
