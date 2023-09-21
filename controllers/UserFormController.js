@@ -20,13 +20,11 @@ $("#searchUserID").keydown(function (event) {
             dataType: "json",
             success: function (res) {
                 resImg=res.data.image;
-                // alert(res.data.image); todo----> image ekata null ekk enne eka hadanna...
                 $("#userID").val(res.data.userID);
                 $("#name").val(res.data.name);
                 $("#email").val(res.data.email);
                 $("#password").val(res.data.password);
-                // $("#userImg").val(res.data.image);
-                // $("#userImg").attr("src", res.data.image);
+                // $("#userImg").url(res.data.image);
                 clearSearchTextField();
             },
             error: function (error) {
@@ -203,4 +201,6 @@ function uploadRegisterImages(userID) {
             alert(JSON.parse(error.responseText).message);
         }
     });}
+
+
 

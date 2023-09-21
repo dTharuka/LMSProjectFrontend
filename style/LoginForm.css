@@ -1,72 +1,27 @@
-#login_form_main_box{
-    position: absolute;
-    height: 40%;
-    width: 30%;
-    background-color: gray;
-    border-radius: 10px;
-    left: 35%;
-    top: 30%;
+#loginRoot{
+    overflow: hidden;
+    background-color: #2A230B;
 }
-#login_form_main_box>img{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-#loginPsd{
-    position: absolute;
-    height: 15%;
-    width: 80%;
-    /*background-color: red;*/
-    border: 0;
-    border-radius: 10px;
-    left: 10%;
-    top: 60%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-#loginEmail{
-    position: absolute;
-    height: 15%;
-    width: 80%;
-    /*background-color: red;*/
-    border: 0;
-    border-radius: 10px;
-    left: 10%;
-    top: 40%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-#login{
-    position: absolute;
-    height: 12%;
-    width: 20%;
-    background-color: #2ea303;
-    border-radius: 10px;
-    left: 70%;
-    top: 80%;
-    border: 0;
-    font-size: 110%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+label{
+    font-size: smaller;
 }
 
-#login:hover{
-    background-color: #fd2e0a;
-    cursor: pointer;
-}
-
-#login_img{
-    position: relative;
+img{
     height: 100px;
     width: 100px;
-    background-color: white;
-    left: 38%;
-    top: 4%;
     border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-#login_img>img{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    border-radius: 100%;
+input{
+    border-color: #DAA520 !important;
+}
+#loginButton{
+    background-color: #DAA520;
+}
+
+#loginFormBox{
+    background-color: #EFEFEF !important;
+}
+#forgotPasswordText{
+    font-weight: bolder;
+    font-size: x-large;
 }

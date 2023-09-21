@@ -15,7 +15,7 @@
 }
 #profileLog{
     position: absolute;
-    height: 30%;
+    height: 50%;
     width: 15%;
     background-color: #deba05;
     border-radius: 10px;
@@ -24,35 +24,48 @@
     font-size: 50%;
 }
 
+#logout{
+    position: absolute;
+    height: 10%;
+    width: 80%;
+    background-color: red;
+    border-radius: 10px;
+    left: 10%;
+    top: 61%;
+    border: 0;
+    font-size: 180%;
+}
+
 
 #get_profile{
     position: absolute;
-    height: 15%;
+    height: 10%;
     width: 80%;
     background-color: dodgerblue;
     border-radius: 10px;
     left: 10%;
-    top: 60%;
+    top: 75%;
     border: 0;
     font-size: 180%;
 }
 
 #select_course{
     position: absolute;
-    height: 15%;
+    height: 10%;
     width: 80%;
     background-color: dodgerblue;
     border-radius: 10px;
     left: 10%;
-    top: 80%;
+    top: 89%;
     border: 0;
     font-size: 180%;
 }
-#boss{
+
+#boss>img{
     position: absolute;
     height: 80px;
     width: 80px;
-    top: 30%;
+    top: 20%;
     border-radius: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -100,4 +113,44 @@ pre{
     margin: 0;
     font-style: italic;
     text-align: center;
+}
+        /*meka styles liyanna ahriyata*/
+#userId>h1{
+    position: absolute;
+    top: 0;
+    color: black;
+    display: inline-block;
+    left: 35%;
+    font-size: 250%;
+    margin: 2%;
+}
+
+#userName>h1{
+    position: absolute;
+    top: 35%;
+    color: black;
+    display: inline-block;
+    left: 35%;
+    font-size: 250%;
+    margin: 0;
+}
+
+#userEmail>h1{
+    position: absolute;
+    top: 42%;
+    color: black;
+    display: inline-block;
+    left: 10%;
+    font-size: 250%;
+    margin: 0;
+}
+
+#userCode>h1{
+    position: absolute;
+    top: 49%;
+    color: black;
+    display: inline-block;
+    left: 40%;
+    font-size: 250%;
+    margin: 0;
 }

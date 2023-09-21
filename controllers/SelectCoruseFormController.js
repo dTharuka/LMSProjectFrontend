@@ -196,3 +196,36 @@ AdmValidator(
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/,
     '#courseID'
 )
+loadAllUsersToCombo();
+function loadAllUsersToCombo() {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/user/get-all-users",
+        method: "GET",
+        dataType: "json",
+        success: function (res) {
+            for (let user of res.data) { // Iterate over the array of user objects
+                $("#userID").append(`<option>${user.userID}</option>`);
+            }
+        },
+        error: function (error) {
+            let message = JSON.parse(error.responseText).message;
+            alert(message);
+        }
+    });
+}
+
+$('#userID').on('click', function () {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/user/get-all-users",
+        method: "GET",
+        dataType: "json",
+        success: function (res) {
+            for (let user of res.data) {
+                if (user.userID === $('#userID').val()) {
+                    $("#name").val(user.name);
+                    $("#email").val(user.email);
+                }
+            }
+        }
+    });
+});

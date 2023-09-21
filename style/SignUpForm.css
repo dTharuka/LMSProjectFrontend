@@ -1,26 +1,43 @@
-#sign_in_box{
-    position: absolute;
-    left: 30%;
-    top: 20%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    border-radius: 10px;
+#signUpRoot{
+    overflow: hidden;
+    background-color: #2A230B;
 }
-body>div:nth-child(1){
-    position: absolute;
-    height: 70%;
-    width: 70%;
-    background-color: white;
-    left: 15%;
-    top: 15%;
-    border-radius: 10px;
-
+label{
+    font-size: smaller;
 }
 
-body>div:nth-child(1)>img{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    opacity: 50%;
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
 }
+input{
+    border-color: #DAA520 !important;
+}
+
+#rightContent{
+    background-color: #EFEFEF;
+}
+#leftContent{
+    background-color: #DAA520;
+    z-index: 100;
+}
+#signUpButton{
+    background-color: #DAA520;
+}
+
+#rightContent{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#signUpText{
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+/*form{*/
+/*    background-color: #DAA520;*/
+/*}*/
+
+
